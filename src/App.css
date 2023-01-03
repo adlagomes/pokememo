@@ -1,5 +1,45 @@
+body {
+  background-color: #323232;
+}
+
+.App {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin: auto;
+  margin-top: 3rem;
+  font-family: 'Josefin Sans', sans-serif;
+ }
+
+ h1 {
+  color: #FFF;
+ }
+
+ h2 {
+  color: #fff;
+ }
+
+ h2 span{
+  color: rgb(255, 231, 18);
+ }
+
+ .question {
+  font-size: 1.8em;
+ }
+
 .table {
+  width: 25rem;
   display: flex;
   gap: 1em;
   flex-wrap: wrap;
+}
+
+button {
+  padding: .6rem 1.8rem;
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.3em;
+  border-radius: .6rem;
+  border: none;
 }
