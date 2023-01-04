@@ -4,17 +4,23 @@ import "./App.css";
 
 function App() {
   const [pokeList, setPokeList] = useState([]);
+  const [board, setBoard] = useState(false);
+
+  const [cardClicked, setCardClicked] = useState()
   const [message, setMessage] = useState(
     <h2>Clique em <span>Start</span> para começar</h2>
   );
-  const [table, setTable] = useState(false);
+
   const [styleCard, setStyleCard] = useState("frontCard");
+  
 
+  const pokeApi = async () => {
+    const response = await fetch("https://pokeapi.co/api/v2/pokemon/");
+    const data = await response.json();
+    const pokeData = data.results; // array de objetos
 
-  function ramdonId() {
-    const idNumber = Math.floor(Math.random() * (10 - 1) + 0);
-    return idNumber;
-  }
+    pokeData.map(({ url, name }) => getPokeData(url, name));
+  };
 
   const getPokeData = async (url, name) => {
     const response = await fetch(url);
@@ -33,26 +39,39 @@ function App() {
     setMessage(<h2>contando...</h2>)
   };
 
-  const pokeApi = async () => {
-    const response = await fetch("https://pokeapi.co/api/v2/pokemon/");
-    const data = await response.json();
-    const pokeData = data.results; // array de objetos
+  function ramdonId() {
+    const idNumber = Math.floor(Math.random() * (10 - 1) + 0);
+    return idNumber;
+  }
 
-    pokeData.map(({ url, name }) => getPokeData(url, name));
-  };
-
-  function tableOnOff() {
+  function boardOnOff() {
     if (pokeList[8]) {
       setStyleCard("backCard")
-      setTable(true)
+      setBoard(true)
     }
   }
 
-  
-  useEffect(() => {
-    const timer = setTimeout(tableOnOff, 5000);
+    function ramdonId() {
+    const idNumber = Math.floor(Math.random() * (10 - 1) + 0);
+    return idNumber;
+  }
 
-    if(table){clearTimeout(timer);}
+  const getCardClicked = r => {
+    const cardTaked = r
+    console.log("testeDoResultado: " + cardTaked)
+    if (cardTaked === "bulbasaur") {
+      console.log("you win")
+    } else {
+      console.log("loooose")
+    }
+  }
+
+  // se a carta na qual cliquei tiver o mesmo nome que aparece na question.. então eu acertei. se nao... eu errei.
+
+  useEffect(() => {
+    const timer = setTimeout(boardOnOff, 5000);
+
+    if(board){clearTimeout(timer);}
   
   }, [pokeList[8]]);
 
@@ -61,13 +80,13 @@ function App() {
       <h1 className="title">~Pokememo~</h1>
       <div className="question_bar">
         {
-          table ? <h2>Onde está <span>{pokeList[ramdonId()].name}</span>?</h2> : message
+          board ? <h2>Onde está <span>{pokeList[ramdonId()].name}</span>?</h2> : message
         }
       </div>
       <div className="table">
         {pokeList[8] ? (
-          pokeList.map(({id, name, imagem }) => {
-            return <Card key={id} name={name} img={imagem} class={styleCard}/>;
+          pokeList.map(({id, name, imagem}) => {
+            return <Card key={id} name={name} img={imagem} class={styleCard} takingTheCard={getCardClicked} />;
           })
         ) : (
           <></>
