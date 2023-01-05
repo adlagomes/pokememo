@@ -12,7 +12,7 @@
 .backCard {
   width: 120px;
   height: 120px;
-  background-color: red;
+  background-color: #D10909;
   background-image: url(../../assets/pokeCardBack.svg);
   display: flex;
   align-items: center;

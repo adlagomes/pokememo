@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { Card } from "./components/Card/Card";
+import { Timer } from "./components/Timer";
 import "./App.css";
 
 function App() {
@@ -7,7 +8,6 @@ function App() {
   const [namePokemon, setNamePokemon] = useState();
 
   const [board, setBoard] = useState(false);
-  // const [cardClicked, setCardClicked] = useState();
   const [message, setMessage] = useState(
     <h2>Clique em <span>Start</span> para começar</h2>
   );
@@ -36,8 +36,8 @@ function App() {
         },
       ].slice(0, 9)
     );
-
-    setMessage(<h2>contando...</h2>)
+    
+    setMessage(<Timer/>)
   };
 
   function ramdonId() {
@@ -64,16 +64,16 @@ function App() {
   }
 
   useEffect(() => {
-    const timer = setTimeout(boardOnOff, 5000);
+    const timer = setTimeout(boardOnOff, 6000);
 
-    if(board){clearTimeout(timer);}
-  
+    if (board) { clearTimeout(timer); }
+      
   }, [pokeList[8]]);
 
   return (
     <div className="App">
       <h1 className="title">~Pokememo~</h1>
-      <div className="question_bar">
+      <div>
         {
           board ? <h2>Onde está <span>{namePokemon}</span>?</h2> : message
         }

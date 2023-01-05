@@ -1,0 +1,15 @@
+.timer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  /* background-color: rgb(209, 9, 9); */
+  border: 1px solid rgb(209, 9, 9);
+  border-radius: 50%;
+}
+
+.timer span {
+  font-size: 1.6em;
+  color: #f2f2f2;
+}
