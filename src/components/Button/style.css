@@ -1,0 +1,17 @@
+button {
+  background-color: #f2f2f2;
+  padding: .6rem 1.8rem;
+  font-size: 1.3em;
+  border-radius: .6rem;
+  border: none;
+  transition: 200ms;
+}
+
+button:hover {
+  background-color: rgb(255, 231, 18);
+}
+
+button:active {
+  background-color: #f2f2f2;
+  padding: .5rem 1.7rem;
+}

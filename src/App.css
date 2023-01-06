@@ -10,7 +10,6 @@ body {
   gap: 1rem;
   margin: auto;
   margin-top: 3rem;
-  font-family: 'Josefin Sans', sans-serif;
  }
 
  h1 {
@@ -36,10 +35,24 @@ body {
   flex-wrap: wrap;
 }
 
-button {
-  padding: .6rem 1.8rem;
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 1.3em;
-  border-radius: .6rem;
+.header {
+  width: 25rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.score{
+  padding: .2rem .8rem;
+  /* background-color: #f2f2f2; */
   border: none;
+  border-radius: .6rem;
+}
+
+.score th {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
 }

@@ -2,14 +2,14 @@ import { useEffect, useState } from "react";
 import "./style.css"
 
 export const Timer = () => {
-  const [totalTimeInSeconds, setTotalTimeInSeconds] = useState(5 % 60);
+  const [timeSeconds, setTimeSeconds] = useState(5 % 60);
 
-  const seconds = totalTimeInSeconds % 60
+  const seconds = timeSeconds % 60
 
   const temporizador = () => {
-    if (totalTimeInSeconds >= 1) {
+    if (timeSeconds >= 1) {
       setTimeout(() => {
-        setTotalTimeInSeconds(totalTimeInSeconds - 1)
+        setTimeSeconds(timeSeconds - 1)
       }, 1000)
     } else {
       return
@@ -20,7 +20,7 @@ export const Timer = () => {
 
     temporizador()
 
-  }, [totalTimeInSeconds])
+  }, [timeSeconds])
 
   return (
     <div className="timer">

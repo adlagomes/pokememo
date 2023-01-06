@@ -3,13 +3,13 @@ import "./styles.css"
 
 export function Card(props) {
   const [style, setStyle] = useState("")
-  const [flag, setFlag] = useState(false)
+  // const [flag, setFlag] = useState(false) // tentando criar uma flag pra impedir que outra carta seja virada
 
   const getCard = (e) => {
     e.preventDefault();
     let cardName = props.name //tentando pegar a carta clicada
     props.takingTheCard(cardName)
-    if (props.class !== "frontCard" && !flag) {
+    if (props.class !== "frontCard") {
       setStyle("virar")
     }else {
       return
