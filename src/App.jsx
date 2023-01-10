@@ -9,19 +9,14 @@ import "./App.css";
 function App() {
   const [pokeList, setPokeList] = useState([]);
   const [namePokemon, setNamePokemon] = useState();
-
   const [board, setBoard] = useState(false);
   const [message, setMessage] = useState(<Statement />);
-
-  const [styleCard, setStyleCard] = useState("frontCard");
-  // const [estiloId, setEstiloId] = useState("")
+  const [sessionStarted, setSessionStarted] = useState(true);
   const [buttonOnOff, setButtonOnOff] = useState(false);
   const [modalOnOff, setModalOnOff] = useState("invisible")
-
   const [victory, setVictory] = useState(0);
   const [defeat, setDefeat] = useState(0);
   const [closingMessage, setClosingMessage] = useState("")
-
   const [restart, setRestart] = useState(false)
 
   const pokeApi = async () => {
@@ -46,7 +41,7 @@ function App() {
           name: name,
           imagem: pokeData.sprites.front_default,
         },
-      ].slice(0,9)
+      ].slice(0, 9)
     );
     setMessage(<Timer />);
   };
@@ -58,7 +53,7 @@ function App() {
 
   function boardOnOff() {
     if (pokeList[8]) {
-      setStyleCard("backCard");
+      setSessionStarted(false);
       setNamePokemon(pokeList[ramdonId()].name);
       setBoard(true);
     }
@@ -70,7 +65,7 @@ function App() {
       if (chosenCard === namePokemon) {
         victoryPoints(1);
         setClosingMessage("Parabéns, você acertou!")
-      } else{
+      } else {
         defeatPoints(1);
         setClosingMessage("A memória tá fraca, heim?")
       }
@@ -107,7 +102,7 @@ function App() {
   };
 
   function shufflePokeList(arr) {
-    for (let i = arr.length - 1; i > 0; i--){
+    for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
       [arr[i], arr[j]] = [arr[j], arr[i]]
     }
@@ -116,7 +111,7 @@ function App() {
 
   function restartApp() {
     setModalOnOff("invisible")
-    setStyleCard("frontCard")
+    setSessionStarted(true)
     setBoard(false)
     setRestart(true)
     let newPokeList = pokeList
@@ -151,7 +146,7 @@ function App() {
                 key={id}
                 name={name}
                 img={imagem}
-                class={styleCard}
+                showCardAll={sessionStarted}
                 takingTheCard={getCardClicked}
               />
             );
