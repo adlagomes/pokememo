@@ -29,16 +29,17 @@
   color: transparent;
 }
 
-#virar {
+.virar {
   background-color: #f2f2f2;
   background-image: none;
+  transition: 600ms;
 }
 
-#virar img {
+.virar img {
   width: auto;
 }
 
-#virar span {
+.virar span {
 color: black;
 }
 

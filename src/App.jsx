@@ -3,6 +3,7 @@ import { Button } from "./components/Button";
 import { Card } from "./components/Card/Card";
 import { Timer } from "./components/Timer";
 import { Statement } from "./components/Statement";
+import { Modal } from "./components/Modal";
 import "./App.css";
 
 function App() {
@@ -13,13 +14,15 @@ function App() {
   const [message, setMessage] = useState(<Statement />);
 
   const [styleCard, setStyleCard] = useState("frontCard");
-  const [renameButton, setRenameButton] = useState("Start");
-  const [aFunction, setAFunction] = useState();
-
-  const [onOff, setOnOff] = useState(false)
+  // const [estiloId, setEstiloId] = useState("")
+  const [buttonOnOff, setButtonOnOff] = useState(false);
+  const [modalOnOff, setModalOnOff] = useState("invisible")
 
   const [victory, setVictory] = useState(0);
   const [defeat, setDefeat] = useState(0);
+  const [closingMessage, setClosingMessage] = useState("")
+
+  const [restart, setRestart] = useState(false)
 
   const pokeApi = async () => {
     const response = await fetch("https://pokeapi.co/api/v2/pokemon/");
@@ -27,7 +30,8 @@ function App() {
     const pokeData = data.results;
 
     pokeData.map(({ url, name }) => getPokeData(url, name));
-    setOnOff(true)
+
+    setButtonOnOff(true); // desabilita o botão "Start"
   };
 
   const getPokeData = async (url, name) => {
@@ -42,10 +46,8 @@ function App() {
           name: name,
           imagem: pokeData.sprites.front_default,
         },
-      ].slice(0, 9)
+      ].slice(0,9)
     );
-
-    // setAFunction(getPokeData)
     setMessage(<Timer />);
   };
 
@@ -59,31 +61,31 @@ function App() {
       setStyleCard("backCard");
       setNamePokemon(pokeList[ramdonId()].name);
       setBoard(true);
-    setRenameButton("Restart");
-
     }
   }
 
   const getCardClicked = (r) => {
     const chosenCard = r;
-    console.log("pokemon: " + chosenCard);
-    if (chosenCard === namePokemon) {
-      console.log("you win");
-      victoryPoints(1);
+    if (board) {
+      if (chosenCard === namePokemon) {
+        victoryPoints(1);
+        setClosingMessage("Parabéns, você acertou!")
+      } else{
+        defeatPoints(1);
+        setClosingMessage("A memória tá fraca, heim?")
+      }
     } else {
-      console.log("loooose");
-      defeatPoints(1);
+      return
     }
-    setOnOff(false)
+    setModalOnOff("")
+    setButtonOnOff(false);
   };
 
   const victoryPoints = (n) => {
-    const point = n;
     setVictory(victory + n);
   };
 
   const defeatPoints = (n) => {
-    const point = n;
     setDefeat(defeat + n);
   };
 
@@ -104,13 +106,27 @@ function App() {
     );
   };
 
-  useEffect(() => {
-    const timer = setTimeout(boardOnOff, 6000);
-
-    if (board) {
-      clearTimeout(timer);
+  function shufflePokeList(arr) {
+    for (let i = arr.length - 1; i > 0; i--){
+      const j = Math.floor(Math.random() * (i + 1));
+      [arr[i], arr[j]] = [arr[j], arr[i]]
     }
-  }, [pokeList[8]]);
+    return arr
+  }
+
+  function restartApp() {
+    setModalOnOff("invisible")
+    setStyleCard("frontCard")
+    setBoard(false)
+    setRestart(true)
+    let newPokeList = pokeList
+    setPokeList(shufflePokeList(newPokeList))
+  }
+
+
+  useEffect(() => {
+    setTimeout(boardOnOff, 6000);
+  }, [pokeList[8], restart])
 
   return (
     <div className="App">
@@ -144,8 +160,13 @@ function App() {
           <></>
         )}
       </div>
+      <Modal msg={closingMessage} visibility={modalOnOff} action={restartApp} />
       <div className="footer">
-        <Button nameFunction={pokeApi} nameButton={renameButton} validation={onOff} />
+        <Button
+          nameFunction={pokeApi}
+          nameButton="Start"
+          validation={buttonOnOff}
+        />
       </div>
     </div>
   );
