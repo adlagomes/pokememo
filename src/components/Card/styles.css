@@ -1,9 +1,10 @@
 .card {
   position: relative;
-  width: 120px;
-  height: 120px;
+  width: 160px;
+  height: 160px;
   transform-style: preserve-3d;
   transition: transform 600ms ease-in-out;
+  font-size: 1.3em;
 }
 
 .cardFlipped {
@@ -17,6 +18,11 @@
   flex-direction: column;
   border-radius: 1rem;
   cursor: pointer;
+}
+
+.frontCard .cardImage{
+  width: 120px;
+  height: auto;
 }
 
 .cardFace {

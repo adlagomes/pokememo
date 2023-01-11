@@ -94,11 +94,11 @@ function App() {
         <tbody>
           <tr>
             <td>Vitórias:</td>
-            <td>{victory}</td>
+            <td className="win">{victory}</td>
           </tr>
           <tr>
             <td>Derrotas:</td>
-            <td>{defeat}</td>
+            <td className="lose">{defeat}</td>
           </tr>
         </tbody>
       </table>
@@ -130,9 +130,8 @@ function App() {
     <div className="App">
       <div className="header">
         <h1 className="title">~Pokememo~</h1>
-        <Score />
       </div>
-      <div>
+      <div className="subtitle">
         {board ? (
           <h2>
             Onde está <span>{namePokemon}</span>?
@@ -141,7 +140,7 @@ function App() {
           message
         )}
       </div>
-      <div className="table">
+      <div className="board">
         {pokeList[8] ? (
           pokeList.map(({ id, name, imagem }) => {
             return (
@@ -158,6 +157,9 @@ function App() {
           <></>
         )}
       </div>
+      {
+        buttonOnOff ? <Score /> : <></>
+      }
       <Modal msg={closingMessage} visibility={modalOnOff} action={restartApp} />
       <div className="footer">
         <Button

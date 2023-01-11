@@ -27,8 +27,8 @@ export function Card(props) {
     >
       <div className={cardContentClassNames.join(" ")}>
         <div className="cardFace frontCard">
-          <img src={props.img} alt={props.name} />
-          <span>{props.name}</span>
+          <img src={props.img} alt={props.name} className="cardImage"/>
+          <span className="cardName">{props.name}</span>
         </div>
         <div className="cardFace backCard" />
       </div>
