@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { Button } from "./components/Button";
-import { Board } from "./components/Board";
+import { Card } from "./components/Card";
 import { Timer } from "./components/Timer";
 import { Statement } from "./components/Statement";
 import { Modal } from "./components/Modal";
@@ -16,15 +16,13 @@ function App() {
   const [showCard, setShowCard] = useState(true);
 
   const [buttonOnOff, setButtonOnOff] = useState(false);
-  const [modalOnOff, setModalOnOff] = useState("invisible")
+  const [modalOnOff, setModalOnOff] = useState("invisible");
 
   const [victory, setVictory] = useState(0);
   const [defeat, setDefeat] = useState(0);
-  const [closingMessage, setClosingMessage] = useState("")
+  const [closingMessage, setClosingMessage] = useState("");
 
-  const [restart, setRestart] = useState(false)
-
-  // const [stateCards, setStateCards] = useState(pokeList)
+  const [restart, setRestart] = useState(false);
 
   const pokeApi = async () => {
     const response = await fetch("https://pokeapi.co/api/v2/pokemon/");
@@ -48,7 +46,7 @@ function App() {
           name: name,
           imagem: pokeData.sprites.front_default,
         },
-      ].slice(0,9)
+      ].slice(0, 9)
     );
     setMessage(<Timer />);
   };
@@ -67,21 +65,19 @@ function App() {
   }
 
   const getCardClicked = (n) => {
-
     if (board) {
       if (n === namePokemon) {
         victoryPoints(1);
-        setClosingMessage("Parabéns, você acertou!")
+        setClosingMessage("Parabéns, você acertou!");
       } else {
         defeatPoints(1);
-        setClosingMessage("A memória tá fraca, heim?")
+        setClosingMessage("A memória tá fraca, heim?");
       }
     } else {
-      return
+      return;
     }
-    setModalOnOff("")
+    setModalOnOff("");
     setButtonOnOff(true);
-
   };
 
   const victoryPoints = (n) => {
@@ -110,25 +106,25 @@ function App() {
   };
 
   function shufflePokeList(arr) {
-    for (let i = arr.length - 1; i > 0; i--){
+    for (let i = arr.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      [arr[i], arr[j]] = [arr[j], arr[i]]
+      [arr[i], arr[j]] = [arr[j], arr[i]];
     }
-    return arr
+    return arr;
   }
 
   function restartApp() {
-    setModalOnOff("invisible")
-    setShowCard(true)
-    setBoard(false)
-    setRestart(true)
-    let newPokeList = pokeList
-    setPokeList(shufflePokeList(newPokeList))
+    setModalOnOff("invisible");
+    setShowCard(true);
+    setBoard(false);
+    setRestart(true);
+    let newPokeList = pokeList;
+    setPokeList(shufflePokeList(newPokeList));
   }
 
   useEffect(() => {
     setTimeout(boardOnOff, 6000);
-  }, [pokeList[8], restart])
+  }, [pokeList[8], restart]);
 
   return (
     <div className="App">
@@ -149,7 +145,7 @@ function App() {
         {pokeList[8] ? (
           pokeList.map(({ id, name, imagem }) => {
             return (
-              <Board
+              <Card
                 key={id}
                 name={name}
                 img={imagem}
@@ -162,7 +158,7 @@ function App() {
           <></>
         )}
       </div>
-      <Modal msg={closingMessage} visibility={modalOnOff} action={restartApp}/>
+      <Modal msg={closingMessage} visibility={modalOnOff} action={restartApp} />
       <div className="footer">
         <Button
           nameFunction={pokeApi}

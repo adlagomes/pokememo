@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { BackCard } from "../BackCard";
-import { FrontCard } from "../FrontCard";
 import "./styles.css";
 
-export function Board(props) {
+export function Card(props) {
   const [showCard, setShowCard] = useState(props.show);
+  const cardContentClassNames = ["card"];
+
+  showCard !== true && cardContentClassNames.push("cardFlipped");
 
   const getCard = () => {
     let cardName = props.name; //tentando pegar a carta clicada
@@ -19,14 +20,17 @@ export function Board(props) {
 
   return (
     <div
-      className="card"
       onClick={() => {
+        setShowCard(true)
         getCard();
-        setShowCard(!showCard);
       }}
     >
-      <div className="card__content">
-        {showCard ? <FrontCard img={props.img} name={props.name} /> : <BackCard/>}
+      <div className={cardContentClassNames.join(" ")}>
+        <div className="cardFace frontCard">
+          <img src={props.img} alt={props.name} />
+          <span>{props.name}</span>
+        </div>
+        <div className="cardFace backCard" />
       </div>
     </div>
   );
