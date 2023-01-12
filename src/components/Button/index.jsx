@@ -1,8 +1,6 @@
 import "./style.css"
 
 export const Button = (props) => {
-  // const [visible, setVisible] = useState("")
-  
   const disable = props.validation
 
   return (
