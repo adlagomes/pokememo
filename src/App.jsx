@@ -45,20 +45,17 @@ function App() {
         {
           id: pokeData.id,
           name: name,
-          imagem: pokeData.sprites.front_default,
+          imagem: pokeData.sprites.other.home.front_default,
         },
       ].slice(0, 9)
     );
     setMessage(<Timer />);
   };
 
-// rever essa função, verificar se posso fazer esses comando de outro modo.
-  const boardOnOff = () => {
-    if (initialPokeList[8]) {
+  const cardsFaceDown = () => {
       setShowCard(false);
       setNamePokemon(initialPokeList[randomId()].name);
       setBoard(true);
-    }
   }
 
   const handleCardClick = (n) => {
@@ -79,8 +76,7 @@ function App() {
     return arr.sort(() => Math.random() - 0.5);
   }
 
-  // verificar se consigo enviar pra utils
-  const restartApp = () => {
+  const restartGame = () => {
     setShowModal("invisible");
     setShowCard(true);
     setBoard(false);
@@ -90,7 +86,8 @@ function App() {
   }
 
   useEffect(() => {
-    setTimeout(boardOnOff, 6000);
+    setRestart(false)
+    setTimeout(cardsFaceDown, 6000);
   }, [initialPokeList[8], restart]);
 
   return (
@@ -125,7 +122,7 @@ function App() {
         )}
       </div>
       {showButton ? <Score w={victory} d={defeat} /> : <></>}
-      <Modal msg={closingMessage} visibility={showModal} action={restartApp} />
+      <Modal msg={closingMessage} visibility={showModal} action={restartGame} />
       <div className="footer">
         <Button
           nameFunction={pokeApi}
