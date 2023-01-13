@@ -1,0 +1,41 @@
+.card {
+  position: relative;
+  width: 160px;
+  height: 160px;
+  transform-style: preserve-3d;
+  transition: transform 600ms ease-in-out;
+  font-size: 1.3em;
+}
+
+.cardFlipped {
+  transform: rotateY(180deg);
+}
+
+.frontCard {
+  background-color: #f2f2f2;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  border-radius: 1rem;
+  cursor: pointer;
+}
+
+.frontCard .cardImage{
+  width: 120px;
+  height: auto;
+}
+
+.cardFace {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  backface-visibility: hidden;
+}
+
+.backCard {
+  background-color: #d10909;
+  background-image: url(../../assets/pokeCardBack.svg);
+  border-radius: 1rem;
+  cursor: pointer;
+  transform: rotateY(180deg);
+}

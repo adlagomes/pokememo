@@ -7,52 +7,80 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  gap: 1rem;
+  gap: 2rem;
   margin: auto;
-  margin-top: 3rem;
  }
 
- h1 {
+ .header {
+  width: 100vw;
+  height: 6rem;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background-color: #323232;
+  border-top: .4rem solid #FFF;
+  border-bottom: .4rem solid #FFF;
+  margin-bottom: 1rem;
+}
+
+ .title {
+  font-size: 3em;
   color: #FFF;
  }
 
- h2 {
+ .subtitle {
+  height: 3.5rem;
+ }
+
+ .subtitle h2 {
+  font-size: 2em;
   color: #fff;
  }
 
- h2 span{
+ .subtitle h2 span{
   color: rgb(255, 231, 18);
  }
 
  .question {
-  font-size: 1.8em;
+  font-size: 2em;
  }
 
-.table {
-  width: 25rem;
+.board {
+  width: 41rem;
   display: flex;
+  align-items: center;
+  justify-content: center;
   gap: 1em;
   flex-wrap: wrap;
 }
 
-.header {
-  width: 25rem;
-  display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
-}
-
 .score{
-  padding: .2rem .8rem;
-  /* background-color: #f2f2f2; */
+  width: 32rem;
+  background-color: #f2f2f2;
+  font-size: 1.6em;
+  color: #323232;
+  padding: .8rem .8rem;
   border: none;
   border-radius: .6rem;
 }
 
-.score th {
+.score tbody {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.score tbody tr {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 1rem;
+}
+.score tbody tr .win {
+  color: rgb(12, 93, 185);
+}
+
+.score tbody tr .lose {
+  color: rgb(151, 5, 17);
 }

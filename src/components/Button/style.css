@@ -1,19 +1,23 @@
 button {
   background-color: #f2f2f2;
-  padding: .6rem 1.8rem;
-  font-size: 1.3em;
+  width: 6rem;
+  height: 6rem;
+  font-size: 1.6em;
   border-radius: .6rem;
   border: none;
+  box-shadow: 2px 2px 2px rgba(0, 0, 0, 0.068);
   transition: 200ms;
 }
 
 button:hover {
-  background-color: rgb(255, 231, 18);
+  color: transparent;
+  background-color: #f2f2f2;
+  background-image: url(../../assets/pokeCardBack.svg);
+  border-radius: 50%;
 }
 
 button:active {
-  background-color: #f2f2f2;
-  padding: .5rem 1.7rem;
+  transform: rotateZ(45deg);
 }
 
 #visible {
