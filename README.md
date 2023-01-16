@@ -1,3 +1,4 @@
-# pokememo_estudo
+# PokeMemo
 
-aplicação desenvolvida para consumir uma api e mostrar seus resultados na tela
+PokeMemo é um jogo da memória diferente desenvolvido com o único intuito de aplicar os aprendizados sobre react e consumo de API.
+
