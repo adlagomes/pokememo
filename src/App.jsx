@@ -20,6 +20,7 @@ function App() {
   const [showCard, setShowCard] = useState(true);
   const [showButton, setShowButton] = useState(false);
   const [showModal, setShowModal] = useState("invisible");
+  const [image, setImage] = useState();
   const [victory, setVictory] = useState(0);
   const [defeat, setDefeat] = useState(0);
   const [closingMessage, setClosingMessage] = useState("");
@@ -34,7 +35,7 @@ function App() {
 
     setShowButton(true);
   };
-  
+
   const getPokeData = async (url, name) => {
     const response = await fetch(url);
     const pokeData = await response.json();
@@ -45,27 +46,34 @@ function App() {
         {
           id: pokeData.id,
           name: name,
-          imagem: pokeData.sprites.other.home.front_default,
+          imagem: pokeData.sprites.front_default
         },
-      ].slice(0, 9)
+      ]
+        .sort(() => Math.random() - 0.5)
+        .slice(0, 9)
     );
+    
     setMessage(<Timer />);
   };
 
   const cardsFaceDown = () => {
+    if (initialPokeList[8]) {
       setShowCard(false);
       setNamePokemon(initialPokeList[randomId()].name);
       setBoard(true);
-  }
+    }
+  };
 
   const handleCardClick = (n) => {
     if (board) {
       if (n === namePokemon) {
         setVictory(victory + 1);
         setClosingMessage("Parabéns, você acertou!");
+        setImage("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/25.gif")
       } else {
         setDefeat(defeat + 1);
-        setClosingMessage("A memória tá fraca, heim?");
+        setClosingMessage("A memória tá ruim, heim?");
+        setImage("https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/versions/generation-v/black-white/animated/54.gif")
       }
     } else return;
     setShowModal("");
@@ -74,7 +82,7 @@ function App() {
 
   const shufflePokeList = (arr) => {
     return arr.sort(() => Math.random() - 0.5);
-  }
+  };
 
   const restartGame = () => {
     setShowModal("invisible");
@@ -83,10 +91,10 @@ function App() {
     setRestart(true);
     let newPokeList = initialPokeList;
     shufflePokeList(newPokeList);
-  }
+  };
 
   useEffect(() => {
-    setRestart(false)
+    setRestart(false);
     setTimeout(cardsFaceDown, 6000);
   }, [initialPokeList[8], restart]);
 
@@ -122,7 +130,7 @@ function App() {
         )}
       </div>
       {showButton ? <Score w={victory} d={defeat} /> : <></>}
-      <Modal msg={closingMessage} visibility={showModal} action={restartGame} />
+      <Modal msg={closingMessage} img={image} visibility={showModal} action={restartGame} />
       <div className="footer">
         <Button
           nameFunction={pokeApi}
