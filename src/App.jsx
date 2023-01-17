@@ -101,7 +101,7 @@ function App() {
   return (
     <div className="App">
       <div className="header">
-        <h1 className="title">~Pokememo~</h1>
+        <h1 className="title">~PokeMemo~</h1>
       </div>
       <div className="subtitle">
         {board ? (
