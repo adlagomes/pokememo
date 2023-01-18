@@ -138,6 +138,7 @@ function App() {
           validation={showButton}
         />
       </div>
+      <footer>Feito com ♥ por Adla Gomes</footer>
     </div>
   );
 }
