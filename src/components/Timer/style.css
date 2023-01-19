@@ -12,3 +12,14 @@
   font-size: 2em;
   color: #f2f2f2;
 }
+
+@media (max-width: 320px){
+  .timer {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .timer span {
+    font-size: 1.6em;
+  }
+}

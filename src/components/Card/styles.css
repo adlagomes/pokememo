@@ -33,9 +33,23 @@
 }
 
 .backCard {
-  background-color: #d10909;
-  background-image: url(../../assets/pokeCardBack.svg);
+  background: #d10909 url(../../assets/pokeCardBack.svg) no-repeat center;
   border-radius: 1rem;
   cursor: pointer;
   transform: rotateY(180deg);
+}
+
+@media (max-width: 320px){
+  .card {
+    width: 5rem;
+    height: 5rem;
+  }
+
+  .frontCard .cardImage{
+    width: 60px;
+  }
+
+  .frontCard span {
+    font-size: .6em;
+  }
 }

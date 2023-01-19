@@ -6,9 +6,15 @@
 
 .message h2 {
   color: #fff;
-  font-size: 2em;
+  font-size: 1.2em;
  }
 
  .message h2 span{
   color: rgb(255, 231, 18);
+ }
+ 
+ @media (max-width: 320px) {
+  .message h2 {
+    font-size: 1.2em;
+  }
  }

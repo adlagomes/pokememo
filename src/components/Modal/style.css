@@ -43,3 +43,14 @@
   visibility: hidden;
   transition-delay: -1s;
 }
+
+@media (max-width: 320px){
+  .modal-wrapper .msg {
+    width: 50%;
+    font-size: 1.6em;
+  }
+
+  .modal-wrapper img{
+    width: 6rem;
+  }
+}

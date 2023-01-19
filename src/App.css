@@ -1,13 +1,11 @@
 body {
-  background-color: #323232;
-  background-image: url(./assets/bkg.png);
-  background-repeat: no-repeat;
-  background-size: cover;
+  background: #323232 url(./assets//bkg.png) no-repeat center;
   overflow: hidden;
 }
 
 .App {
-  width: 50%;
+  width: auto;
+  height: 100vh;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -95,4 +93,32 @@ footer {
   width: 90%;
   height: 3rem;
   text-align: center;
+}
+
+@media (max-width: 320px){
+
+  .header {
+    margin-bottom: 0;
+  }
+
+  .title {
+    font-size: 2.5em;
+  }
+  
+  .subtitle h2 {
+    margin-top: .2rem;
+    font-size: 1.4em;
+  }
+
+  .board {
+    width: 96vw;
+    gap: .6rem;
+  }
+
+  .score{
+    width: 96vw;
+    font-size: 1.2em;
+    padding: .6rem .6rem;
+  }
+
 }
