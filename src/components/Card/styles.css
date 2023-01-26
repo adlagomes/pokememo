@@ -20,7 +20,7 @@
   cursor: pointer;
 }
 
-.frontCard .cardImage{
+.frontCard .cardImage {
   width: 120px;
   height: auto;
 }
@@ -39,17 +39,69 @@
   transform: rotateY(180deg);
 }
 
-@media (max-width: 320px){
+@media (min-width: 769px) and (max-width: 1024px){
+  .card {
+    width: 15rem;
+    height: 15rem;
+  }
+
+  .frontCard .cardImage{
+    width: 85%;
+  }
+
+  .frontCard span {
+    position: absolute;
+    margin-top: 12rem;
+    font-size: 1.4em;
+  }
+}
+
+@media (max-width: 768px) {
+  .card {
+    width: 12.8rem;
+    height: 12.8rem;
+  }
+
+  .frontCard .cardImage{
+    width: 85%;
+  }
+
+  .frontCard span {
+    position: absolute;
+    margin-top: 10rem;
+    font-size: 1.2em;
+  }
+}
+
+@media (max-width: 480px) {
+  .card {
+    width: 6.8rem;
+    height: 6.8rem;
+  }
+  .frontCard .cardImage {
+    width: 90%;
+  }
+
+  .frontCard span {
+    position: absolute;
+    margin-top: 5.6rem;
+    font-size: 0.7em;
+  }
+}
+
+@media (max-width: 320px) {
   .card {
     width: 5rem;
     height: 5rem;
   }
 
-  .frontCard .cardImage{
-    width: 60px;
+  .frontCard .cardImage {
+    width: 90%;
   }
 
   .frontCard span {
-    font-size: .6em;
+    position: absolute;
+    margin-top: 3.8rem;
+    font-size: 0.6em;
   }
 }

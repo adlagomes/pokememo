@@ -13,8 +13,14 @@
   color: rgb(255, 231, 18);
  }
  
- @media (max-width: 320px) {
+ @media (min-width: 768px) and (max-width: 1023px) {
   .message h2 {
     font-size: 1.2em;
   }
  }
+
+ @media (max-width: 767px){
+  .message h2 {
+    font-size: 1.2em;
+  }
+}

@@ -131,7 +131,7 @@ function App() {
       </div>
       {showButton ? <Score w={victory} d={defeat} /> : <></>}
       <Modal msg={closingMessage} img={image} visibility={showModal} action={restartGame} />
-      <div className="footer">
+      <div className="button">
         <Button
           nameFunction={pokeApi}
           nameButton="Start"
